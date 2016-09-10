@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+import os
 import get_weather
+app = Flask(__name__)
 
 # app.run(debug=True)
 
@@ -23,4 +24,5 @@ def weather():
     return render_template('weather.html', forecast=forecast)
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
